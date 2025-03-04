@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
+# AUTHOR: Jessica Pinto
 # FILENAME: title of the source file
 # SPECIFICATION: description of the program
 # FOR: CS 4210- Assignment #2
@@ -13,7 +13,7 @@
 from sklearn import tree
 import csv
 
-dataSets = ['contact_lens_training_1.csv', 'contact_lens_training_2.csv', 'contact_lens_training_3.csv']
+dataSets = ['/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_1.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_2.cs', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_3.cs']
 
 for ds in dataSets:
 
@@ -31,6 +31,40 @@ for ds in dataSets:
     #Transform the original categorical training features to numbers and add to the 4D array X.
     #For instance Young = 1, Prepresbyopic = 2, Presbyopic = 3, X = [[1, 1, 1, 1], [2, 2, 2, 2], ...]]
     #--> add your Python code here
+    for row in dbTraining: 
+        # age 
+        match row[0]: 
+            case "Young": 
+                row[0] = 1
+            case "Presbyopic": 
+                row[0] = 2
+            case "Prepresbyopic": 
+                row[0] = 3
+        # spectacle prescrption 
+        match row[1]: 
+            case "Myope": 
+                row[1] = 1
+            case "Hypermetrope": 
+                row[1] = 2
+        # astigmatism
+        match row[2]:
+            case "Yes": 
+                row[2] = 1
+            case "No": 
+                row[2] = 2
+        # tear production rate 
+        match row[3]:
+            case "Reduced": 
+                row[3] = 1
+            case "Normal": 
+                row[3] = 2
+        X.append([row[0], row[1], row[2], row[3]])
+        match row[4]:
+            case "Yes": 
+                row[4] = 1
+            case "No": 
+                row[4] = 2
+        Y.append([row[4]])  
 
     #Transform the original categorical training classes to numbers and add to the vector Y.
     #For instance Yes = 1 and No = 2, Y = [1, 1, 2, 2, ...]
@@ -44,16 +78,66 @@ for ds in dataSets:
        clf = clf.fit(X, Y)
 
        #Read the test data and add this data to dbTest
-       #--> add your Python code here
+       #--> add your Python code here  
+       dbTest = []
+       with open(ds, 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        for i, row in enumerate(reader):
+                if i > 0: #skipping the header
+                    dbTest.append (row)
+       
 
-       for data in dbTest:
+        for data in dbTest:
            #Transform the features of the test instances to numbers following the same strategy done during training,
            #and then use the decision tree to make the class prediction. For instance: class_predicted = clf.predict([[3, 1, 2, 1]])[0]
            #where [0] is used to get an integer as the predicted class label so that you can compare it with the true label
            #--> add your Python code here
 
+           # Transform features 
+             # age 
+            match row[0]: 
+                case "Young": 
+                    row[0] = 1
+                case "Presbyopic": 
+                    row[0] = 2
+                case "Prepresbyopic": 
+                    row[0] = 3
+            # spectacle prescrption 
+            match row[1]: 
+                case "Myope": 
+                    row[1] = 1
+                case "Hypermetrope": 
+                    row[1] = 2
+            # astigmatism
+            match row[2]:
+                case "Yes": 
+                    row[2] = 1
+                case "No": 
+                    row[2] = 2
+            # tear production rate 
+            match row[3]:
+                case "Reduced": 
+                    row[3] = 1
+                case "Normal": 
+                    row[3] = 2
+            match row[4]:
+                case "Yes": 
+                    row[4] = 1
+                case "No": 
+                    row[4] = 2
+
+        correct = 0 
+            
+        for data in dbTest: 
+            # Make predictions 
+            class_predicted = clf.predict([[data[0], data[1], data[2], data[3]]])[0]
+            if class_predicted == data[4]:
+                correct += 1
+
            #Compare the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
            #--> add your Python code here
+        accuracy = correct/len(dbTest)
+        print("Accuracy for", ds, ":", accuracy)
 
     #Find the average of this model during the 10 runs (training and test set)
     #--> add your Python code here
