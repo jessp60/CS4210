@@ -13,8 +13,7 @@
 from sklearn import tree
 import csv
 
-dataSets = ['/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_1.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_2.cs', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_3.cs']
-
+dataSets = ['/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_1.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_2.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_3.csv']
 for ds in dataSets:
 
     dbTraining = []
@@ -71,6 +70,7 @@ for ds in dataSets:
     #--> add your Python code here
 
     #Loop your training and test tasks 10 times here
+    average = []
     for i in range (10):
 
        #Fitting the decision tree to the data setting max_depth=3
@@ -87,6 +87,7 @@ for ds in dataSets:
                     dbTest.append (row)
        
 
+        correct = 0
         for data in dbTest:
            #Transform the features of the test instances to numbers following the same strategy done during training,
            #and then use the decision tree to make the class prediction. For instance: class_predicted = clf.predict([[3, 1, 2, 1]])[0]
@@ -95,40 +96,38 @@ for ds in dataSets:
 
            # Transform features 
              # age 
-            match row[0]: 
+            match data[0]: 
                 case "Young": 
-                    row[0] = 1
+                    data[0] = 1
                 case "Presbyopic": 
-                    row[0] = 2
+                    data[0] = 2
                 case "Prepresbyopic": 
-                    row[0] = 3
+                    data[0] = 3
             # spectacle prescrption 
-            match row[1]: 
+            match data[1]: 
                 case "Myope": 
-                    row[1] = 1
+                    data[1] = 1
                 case "Hypermetrope": 
-                    row[1] = 2
+                    data[1] = 2
             # astigmatism
-            match row[2]:
+            match data[2]:
                 case "Yes": 
-                    row[2] = 1
+                    data[2] = 1
                 case "No": 
-                    row[2] = 2
+                    data[2] = 2
             # tear production rate 
-            match row[3]:
+            match data[3]:
                 case "Reduced": 
-                    row[3] = 1
+                    data[3] = 1
                 case "Normal": 
-                    row[3] = 2
-            match row[4]:
+                    data[3] = 2
+            match data[4]:
                 case "Yes": 
-                    row[4] = 1
+                    data[4] = 1
                 case "No": 
-                    row[4] = 2
+                    data[4] = 2
 
-        correct = 0 
-            
-        for data in dbTest: 
+        # for data in dbTest: 
             # Make predictions 
             class_predicted = clf.predict([[data[0], data[1], data[2], data[3]]])[0]
             if class_predicted == data[4]:
@@ -136,8 +135,10 @@ for ds in dataSets:
 
            #Compare the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
            #--> add your Python code here
-        accuracy = correct/len(dbTest)
-        print("Accuracy for", ds, ":", accuracy)
+        average.append(correct / len(dbTest))
+
+    accuracy = sum(average) / len(average)
+    print("Accuracy for", ds, ":", accuracy)
 
     #Find the average of this model during the 10 runs (training and test set)
     #--> add your Python code here
@@ -145,7 +146,5 @@ for ds in dataSets:
     #Print the average accuracy of this model during the 10 runs (training and test set).
     #Your output should be something like that: final accuracy when training on contact_lens_training_1.csv: 0.2
     #--> add your Python code here
-
-
 
 
