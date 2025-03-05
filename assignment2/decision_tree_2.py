@@ -13,7 +13,7 @@
 from sklearn import tree
 import csv
 
-dataSets = ['/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_1.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_2.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_3.csv']
+dataSets = ['contact_lens_training_1.csv', 'contact_lens_training_2.csv', 'contact_lens_training_3.csv']
 for ds in dataSets:
 
     dbTraining = []
@@ -70,9 +70,10 @@ for ds in dataSets:
     #--> add your Python code here
 
     #Loop your training and test tasks 10 times here
-    average = []
+    accuracies = []
+    
     for i in range (10):
-
+       correct = 0
        #Fitting the decision tree to the data setting max_depth=3
        clf = tree.DecisionTreeClassifier(criterion = 'entropy', max_depth=5)
        clf = clf.fit(X, Y)
@@ -86,8 +87,6 @@ for ds in dataSets:
                 if i > 0: #skipping the header
                     dbTest.append (row)
        
-
-        correct = 0
         for data in dbTest:
            #Transform the features of the test instances to numbers following the same strategy done during training,
            #and then use the decision tree to make the class prediction. For instance: class_predicted = clf.predict([[3, 1, 2, 1]])[0]
@@ -130,15 +129,12 @@ for ds in dataSets:
         # for data in dbTest: 
             # Make predictions 
             class_predicted = clf.predict([[data[0], data[1], data[2], data[3]]])[0]
+            #Compare the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
             if class_predicted == data[4]:
                 correct += 1
-
-           #Compare the prediction with the true label (located at data[4]) of the test instance to start calculating the accuracy.
-           #--> add your Python code here
-        average.append(correct / len(dbTest))
-
-    accuracy = sum(average) / len(average)
-    print("Accuracy for", ds, ":", accuracy)
+        accuracy = correct/len(dbTest)
+        accuracies.append(accuracy)
+    print("Accuracy for", ds, sum(accuracies)/len(accuracies))
 
     #Find the average of this model during the 10 runs (training and test set)
     #--> add your Python code here

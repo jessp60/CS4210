@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
-# AUTHOR: your name
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# AUTHOR: Jessica Pinto 
+# FILENAME: naive_bayes.py
+# SPECIFICATION: Program that takes in training and testing information from a csv file to be used in classification. Once the classificaiton has been made, the program will print the results that match the specified threshold.
 # FOR: CS 4210- Assignment #2
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 1 hour
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard
@@ -92,7 +92,6 @@ for row in dbTesting:
             row[0] = 2
         case "Rain": 
             row[0] = 3
-    # spectacle prescrption 
     match row[1]: 
         case "Hot": 
             row[1] = 1
@@ -100,13 +99,11 @@ for row in dbTesting:
             row[1] = 2
         case "Cool": 
             row[1] = 3
-    # astigmatism
     match row[2]:
         case "High": 
             row[2] = 1
         case "Normal": 
             row[2] = 2
-    # tear production rate 
     match row[3]:
         case "Strong": 
             row[3] = 1
@@ -117,6 +114,8 @@ for row in dbTesting:
             row[4] = 1
         case "No": 
             row[4] = 0 
+    
+    # Make predictions
     classifier_prediction = clf.predict_proba([[row[0], row[1], row[2], row[3]]])
     if classifier_prediction[0][0] >= 0.75: 
         result = round(classifier_prediction[0][0], 3)
@@ -126,6 +125,3 @@ for row in dbTesting:
         continue
     print(head[4] + ", "+ head[0] + ", " +  head[1] + ", " + head[2] + ", " + head[3], end =": ")
     print(result)
-
-#Use your test samples to make probabilistic predictions. For instance: clf.predict_proba([[3, 1, 2, 1]])[0]
-#--> add your Python code here
