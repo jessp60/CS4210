@@ -1,9 +1,9 @@
 #-------------------------------------------------------------------------
 # AUTHOR: Jessica Pinto
-# FILENAME: title of the source file
-# SPECIFICATION: description of the program
+# FILENAME: decision_tree_2.py
+# SPECIFICATION: Reading in training data from three csv files to train a classifier, then using the testing samples from another file to output the error rates of the classifer based on the amount of training data it recieved. 
 # FOR: CS 4210- Assignment #2
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 3 hours 
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: DO NOT USE ANY ADVANCED PYTHON LIBRARY TO COMPLETE THIS CODE SUCH AS numpy OR pandas. You have to work here only with standard
@@ -134,13 +134,8 @@ for ds in dataSets:
                 correct += 1
         accuracy = correct/len(dbTest)
         accuracies.append(accuracy)
-    print("Final accuracy training on", ds, round(sum(accuracies)/len(accuracies), 2))
 
     #Find the average of this model during the 10 runs (training and test set)
-    #--> add your Python code here
-
     #Print the average accuracy of this model during the 10 runs (training and test set).
-    #Your output should be something like that: final accuracy when training on contact_lens_training_1.csv: 0.2
-    #--> add your Python code here
-
+    print("Final accuracy training on", ds, round(sum(accuracies)/len(accuracies), 2))
 
