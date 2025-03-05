@@ -82,11 +82,11 @@ with open("assignment2/weather_test.csv", 'r') as csvfile:
 
 #Printing the header as the solution
 #print("Day    Temperature     ")
-print(f"{'Day':<8} {'Outlook':<15} {'Temperature':<15} {'Humidity':<10}   {'Wind':<10} {"Play Tennis": <10}")
+print(f"{'Day':<8} {'Outlook':<15} {'Temperature':<15} {'Humidity':<10}   {'Wind':<10} {"Play Tennis": <10}    {"Confidence":<10}")
 
 #--> add your Python code here
 for row in dbTesting: 
-    head = row[0], row[1], row[2], row[3], row[5]
+    head = [row[0], row[1], row[2], row[3], row[5]]
 
     match row[0]: 
         case "Sunny": 
@@ -122,10 +122,12 @@ for row in dbTesting:
     classifier_prediction = clf.predict_proba([[row[0], row[1], row[2], row[3]]])
     if classifier_prediction[0][0] >= 0.75: 
         result = round(classifier_prediction[0][0], 3)
+        head.append("No")
     elif classifier_prediction[0][1] >= 0.75: 
         result = round(classifier_prediction[0][1], 3)
+        head.append("Yes")
     else: 
         continue
     
     # format results 
-    print(f"{head[4]:<8} {head[0]:<15} {head[1]:<5}           {head[2]:<8}     {head[3]:<8}   {round(result, 3)}")
+    print(f"{head[4]:<8} {head[0]:<15} {head[1]:<5}           {head[2]:<8}     {head[3]:<8}   {head[5]:<10}     {round(result, 3):<10}")
