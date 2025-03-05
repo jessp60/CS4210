@@ -129,4 +129,4 @@ for row in dbTesting:
     
     #print(head[4] + "     "+ head[0] + "           " +  head[1] + "       " + head[2] + "       " + head[3] + "       ", end =": ")
     # format results 
-    print(f"{head[4]:<8} {head[0]:<15}      {head[1]:<5}      {head[2]:<8}     {head[3]:<8}   {round(result, 3)}")
+    print(f"{head[4]:<8} {head[0]:<15} {head[1]:<5}           {head[2]:<8}     {head[3]:<8}   {round(result, 3)}")
