@@ -81,6 +81,9 @@ with open("assignment2/weather_test.csv", 'r') as csvfile:
                 dbTesting.append([row[1], row[2], row[3], row[4], row[5], row[0]])
 
 #Printing the header as the solution
+#print("Day    Temperature     ")
+print(f"{'Day':<8} {'Outlook':<15} {'Temperature':<15} {'Humidity':<10}   {'Wind':<10} {"Play Tennis": <10}")
+
 #--> add your Python code here
 for row in dbTesting: 
     head = row[0], row[1], row[2], row[3], row[5]
@@ -123,5 +126,7 @@ for row in dbTesting:
         result = round(classifier_prediction[0][1], 3)
     else: 
         continue
-    print(head[4] + ", "+ head[0] + ", " +  head[1] + ", " + head[2] + ", " + head[3], end =": ")
-    print(result)
+    
+    #print(head[4] + "     "+ head[0] + "           " +  head[1] + "       " + head[2] + "       " + head[3] + "       ", end =": ")
+    # format results 
+    print(f"{head[4]:<8} {head[0]:<15}      {head[1]:<5}      {head[2]:<8}     {head[3]:<8}   {round(result, 3)}")

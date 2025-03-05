@@ -13,7 +13,7 @@
 from sklearn import tree
 import csv
 
-dataSets = ['contact_lens_training_1.csv', 'contact_lens_training_2.csv', 'contact_lens_training_3.csv']
+dataSets = ['/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_1.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_2.csv', '/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_training_3.csv']
 for ds in dataSets:
 
     dbTraining = []
@@ -81,7 +81,7 @@ for ds in dataSets:
        #Read the test data and add this data to dbTest
        #--> add your Python code here  
        dbTest = []
-       with open("contact_lens_test.csv", 'r') as csvfile:
+       with open("/Users/jessicapinto/Documents/GitHub/CS4210/assignment2/contact_lens_test.csv", 'r') as csvfile:
         reader = csv.reader(csvfile)
         for i, row in enumerate(reader):
                 if i > 0: #skipping the header
