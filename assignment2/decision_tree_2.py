@@ -134,7 +134,7 @@ for ds in dataSets:
                 correct += 1
         accuracy = correct/len(dbTest)
         accuracies.append(accuracy)
-    print("Accuracy for", ds, sum(accuracies)/len(accuracies))
+    print("Final accuracy training on", ds, round(sum(accuracies)/len(accuracies), 2))
 
     #Find the average of this model during the 10 runs (training and test set)
     #--> add your Python code here
