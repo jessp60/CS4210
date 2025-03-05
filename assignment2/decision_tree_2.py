@@ -81,7 +81,7 @@ for ds in dataSets:
        #Read the test data and add this data to dbTest
        #--> add your Python code here  
        dbTest = []
-       with open(ds, 'r') as csvfile:
+       with open("contact_lens_test.csv", 'r') as csvfile:
         reader = csv.reader(csvfile)
         for i, row in enumerate(reader):
                 if i > 0: #skipping the header
