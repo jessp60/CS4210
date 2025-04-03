@@ -1,9 +1,10 @@
 #-------------------------------------------------------------------------
 # AUTHOR: Jessica Pinto
 # FILENAME: perceptron.py
-# SPECIFICATION: description of the program
+# SPECIFICATION: Program that tests out different hyperparameters for a single layer perceptron and multilevel perceptron to find out which parameters for each model produce the
+#                most accurate results.
 # FOR: CS 4210- Assignment #3
-# TIME SPENT: how long it took you to complete the assignment
+# TIME SPENT: 1 hour
 #-----------------------------------------------------------*/
 
 #IMPORTANT NOTE: YOU HAVE TO WORK WITH THE PYTHON LIBRARIES numpy AND pandas to complete this code.
